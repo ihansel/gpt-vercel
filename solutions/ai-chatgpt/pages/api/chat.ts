@@ -8,7 +8,7 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 const botName = 'AI'
-const userName = 'News reporter' // TODO: move to ENV var
+const userName = 'Customer' // TODO: move to ENV var
 const firstMessge = initialMessages[0].message
 
 // @TODO: unit test this. good case for unit testing
@@ -46,7 +46,7 @@ export default async function handler(req: NextRequest) {
 
   // const messages = req.body.messages
   const messagesPrompt = generatePromptFromMessages(body.messages)
-  const defaultPrompt = `I am Friendly AI Assistant. \n\nThis is the conversation between AI Bot and a news reporter.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
+  const defaultPrompt = `I am Friendly and bubbly AI Assistant that helps customers of the Australian beauty brand Mecca. \n\nThis is the conversation between AI Bot and a customer.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
   const finalPrompt = process.env.AI_PROMPT
     ? `${process.env.AI_PROMPT}${messagesPrompt}\n${botName}: `
     : defaultPrompt
